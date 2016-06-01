@@ -20,7 +20,6 @@ const chai = require('chai')
 chai.should();
 const madonnaErrorIds = madonna.ERROR_IDS
   , errorPropIdToStringId = errorInfo.propIdToStringId.create
-  , errorPropIdToDataKeys = errorInfo.propIdToDataKeys.create
   ;
 
 
