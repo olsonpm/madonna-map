@@ -5,17 +5,26 @@ something else.  I created this to validate raw json then map it through a
 class or constructor.  Note `madonna-map` only allows you to map top-level
 properties.  Allowing otherwise would create for unnecessarily complex code.
 
-## Example
-```js
-const validatedName = argsObj => console.dir(argsObj)
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+## Table of Contents
 
-// creates a function taking the argument 'name' and maps its value to uppercase
+ - [Examples](#examples)
+ - [API](#api)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Examples
+```js
+const madonnaMap = require('madonna-map');
+
+// creates a function requiring the argument 'name' and maps its value to uppercase
 let mapperFn = madonnaMap.createMapper({
   marg: { name: ['require', 'isLadenString'] }
   , argMap: { name: fp.toUpper }
 });
 
-mapperFn({ name: 'phil' })
+mapperFn({ name: 'phil' });
 // returns
 // { name: 'PHIL' }
 
