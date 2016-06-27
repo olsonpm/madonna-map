@@ -57,8 +57,8 @@ module.exports =
 	var common = __webpack_require__(/*! ./common */ 1),
 	    errorInfo = __webpack_require__(/*! ./error-info */ 4),
 	    fp = __webpack_require__(/*! lodash/fp */ 2),
-	    madonna = __webpack_require__(/*! madonna-fp */ 5),
-	    madonnaFn = __webpack_require__(/*! madonna-internal-fn */ 6),
+	    madonna = __webpack_require__(/*! madonna-fp/es6 */ 5),
+	    madonnaFn = __webpack_require__(/*! madonna-internal-fn/es6 */ 6),
 	    utils = __webpack_require__(/*! ./utils */ 3);
 
 	//------//
@@ -372,21 +372,21 @@ module.exports =
 
 /***/ },
 /* 5 */
-/*!*****************************!*\
-  !*** external "madonna-fp" ***!
-  \*****************************/
+/*!*********************************!*\
+  !*** external "madonna-fp/es5" ***!
+  \*********************************/
 /***/ function(module, exports) {
 
-	module.exports = require("madonna-fp");
+	module.exports = require("madonna-fp/es5");
 
 /***/ },
 /* 6 */
-/*!**************************************!*\
-  !*** external "madonna-internal-fn" ***!
-  \**************************************/
+/*!******************************************!*\
+  !*** external "madonna-internal-fn/es5" ***!
+  \******************************************/
 /***/ function(module, exports) {
 
-	module.exports = require("madonna-internal-fn");
+	module.exports = require("madonna-internal-fn/es5");
 
 /***/ }
 /******/ ]);

@@ -58,7 +58,7 @@ module.exports =
 	    errorInfo = __webpack_require__(/*! ../lib/error-info */ 2),
 	    fp = __webpack_require__(/*! lodash/fp */ 3),
 	    madonna = __webpack_require__(/*! madonna-fp */ 5),
-	    madonnaMap = __webpack_require__(/*! ../lib */ 6);
+	    madonnaMap = __webpack_require__(/*! ../es6 */ 6);
 
 	//------//
 	// Init //
@@ -316,164 +316,12 @@ module.exports =
 
 /***/ },
 /* 6 */
-/*!**********************!*\
-  !*** ./lib/index.js ***!
-  \**********************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	//---------//
-	// Imports //
-	//---------//
-
-	var common = __webpack_require__(/*! ./common */ 7),
-	    errorInfo = __webpack_require__(/*! ./error-info */ 2),
-	    fp = __webpack_require__(/*! lodash/fp */ 3),
-	    madonna = __webpack_require__(/*! madonna-fp */ 5),
-	    madonnaFn = __webpack_require__(/*! madonna-internal-fn */ 8),
-	    utils = __webpack_require__(/*! ./utils */ 4);
-
-	//------//
-	// Init //
-	//------//
-
-	var createError = common.createError,
-	    errorPropIdToStringId = errorInfo.propIdToStringId.create,
-	    madonnaMapMarg = getMadonnaMapMarg(),
-	    mapValuesWithKey = utils.mapValuesWithKey;
-
-	//------//
-	// Main //
-	//------//
-
-	var madonnaMap = {
-	  createMapper: madonnaFn({
-	    marg: madonnaMapMarg,
-	    fn: createMapper
-	  })
-	};
-
-	Object.defineProperty(madonnaMap, '_getArgMapSchema', { value: getArgMapSchema });
-
-	function createMapper(argsObj) {
-	  var argValidator = madonna.createSternValidator(argsObj.marg);
-
-	  return function (dirtyArgs) {
-	    argValidator.apply(null, arguments);
-
-	    // no errors, return the mapped results
-	    var argMap = argsObj.argMap;
-	    return fp.flow(fp.pick(fp.keys(argMap)), mapValuesWithKey(function (val, key) {
-	      return argMap[key](val);
-	    }), fp.assign(dirtyArgs))(dirtyArgs);
-	  };
-	}
-
-	//-------------//
-	// Helper Fxns //
-	//-------------//
-
-	function getArgMapSchema(shouldRequire) {
-	  var flags = shouldRequire ? ['require', 'isLadenPlainObject'] : ['isLadenPlainObject'];
-	  return {
-	    flags: flags,
-	    custom: {
-	      allFunctions: fp.all(fp.isFunction)
-	    }
-	  };
-	}
-
-	function getMadonnaMapMarg() {
-	  return {
-	    schema: {
-	      marg: ['require', 'isLadenPlainObject'],
-	      argMap: getArgMapSchema(true)
-	    },
-	    opts: {
-	      cb: furtherValidateMadonnaMap
-	    }
-	  };
-	}
-
-	function furtherValidateMadonnaMap(argsObj) {
-	  var keysAllowed = fp.keys(margToLonghand(argsObj.marg).schema),
-	      keysToTest = fp.keys(argsObj.argMap);
-
-	  // argMap must only contain keys contained within the first level of schema
-	  var invalidKeys = fp.difference(keysToTest, keysAllowed);
-	  if (invalidKeys.length) {
-	    throw createError('Invalid Input', "argMap can only contain keys present in schema.\n" + "invalid keys: " + invalidKeys.join(', ') + "\n" + "keys allowed: " + keysAllowed.join(', '), errorPropIdToStringId.mapKeysMustMatchSchema);
-	  }
-
-	  return { isValid: true };
-	}
-
-	// These two functions should really exist in madonna-fp, just unsure how the
-	//   api should look.
-	function margToLonghand(marg) {
-	  if (margIsShorthand(marg)) {
-	    marg = { schema: marg, opts: {} };
-	  }
-	  return marg;
-	}
-	function margIsShorthand(marg) {
-	  return !marg.schema;
-	}
-
-	//---------//
-	// Exports //
-	//---------//
-
-	module.exports = madonnaMap;
-
-/***/ },
-/* 7 */
-/*!***********************!*\
-  !*** ./lib/common.js ***!
-  \***********************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	//---------//
-	// Imports //
-	//---------//
-
-	var fp = __webpack_require__(/*! lodash/fp */ 3),
-	    utils = __webpack_require__(/*! ./utils */ 4);
-
-	//------//
-	// Init //
-	//------//
-
-	var mutableSet = utils.mutableSet,
-	    defineProp = utils.defineProp;
-
-	//------//
-	// Main //
-	//------//
-
-	var createError = function createError(name, msg, id) {
-	  return fp.flow(mutableSet('name', name), defineProp('id', { enumerable: true, value: id }))(new Error(msg));
-	};
-
-	//---------//
-	// Exports //
-	//---------//
-
-	module.exports = {
-	  createError: createError
-	};
-
-/***/ },
-/* 8 */
-/*!**************************************!*\
-  !*** external "madonna-internal-fn" ***!
-  \**************************************/
+/*!*************************!*\
+  !*** external "../es5" ***!
+  \*************************/
 /***/ function(module, exports) {
 
-	module.exports = require("madonna-internal-fn");
+	module.exports = require("../es5");
 
 /***/ }
 /******/ ]);

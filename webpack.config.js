@@ -7,6 +7,7 @@
 
 var nodeExternals = require('webpack-node-externals')
   , path = require('path')
+  , stripEs6Externals = require('strip-es6-externals')
   ;
 
 
@@ -37,11 +38,16 @@ var exclude = /node_modules/
 // Main //
 //------//
 
+var testEntry = './tests/es6.js';
+
 var res = [
   {
     entry: './lib/index.js'
     , target: 'node'
-    , externals: [nodeExternals()]
+    , externals: [
+      stripEs6Externals()
+      , nodeExternals()
+    ]
     , output: {
       path: __dirname
       , filename: 'es5.js'
@@ -50,9 +56,12 @@ var res = [
     }
     , module: wmodule
   }, {
-    entry: './tests/es6.js'
+    entry: testEntry
     , target: 'node'
-    , externals: [nodeExternals(), '../es5', '../es6']
+    , externals: [
+      stripEs6Externals(testEntry)
+      , nodeExternals()
+    ]
     , output: {
       path: path.join(__dirname, 'tests')
       , filename: 'es5.js'
