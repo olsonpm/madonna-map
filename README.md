@@ -5,6 +5,10 @@ something else.  I created this to validate raw json then map it through a
 class or constructor.  Note `madonna-map` only allows you to map top-level
 properties.  Allowing otherwise would create for unnecessarily complex code.
 
+**Tested against**
+ - node 0.10.0 for the (default) es5 version
+ - node 4.0.0 for es6 @ `require('madonna-map/es6')`
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ## Table of Contents
