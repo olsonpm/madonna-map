@@ -57,7 +57,7 @@ module.exports =
 	var chai = __webpack_require__(/*! chai */ 1),
 	    errorInfo = __webpack_require__(/*! ../lib/error-info */ 2),
 	    fp = __webpack_require__(/*! lodash/fp */ 3),
-	    madonna = __webpack_require__(/*! madonna-fp */ 5),
+	    madonna = __webpack_require__(/*! madonna-fp/es6 */ 5),
 	    madonnaMap = __webpack_require__(/*! ../es6 */ 6);
 
 	//------//
@@ -307,12 +307,12 @@ module.exports =
 
 /***/ },
 /* 5 */
-/*!*****************************!*\
-  !*** external "madonna-fp" ***!
-  \*****************************/
+/*!*********************************!*\
+  !*** external "madonna-fp/es5" ***!
+  \*********************************/
 /***/ function(module, exports) {
 
-	module.exports = require("madonna-fp");
+	module.exports = require("madonna-fp/es5");
 
 /***/ },
 /* 6 */

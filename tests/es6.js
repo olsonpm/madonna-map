@@ -8,7 +8,7 @@
 const chai = require('chai')
   , errorInfo = require('../lib/error-info')
   , fp = require('lodash/fp')
-  , madonna = require('madonna-fp')
+  , madonna = require('madonna-fp/es6')
   , madonnaMap = require('../es6')
   ;
 

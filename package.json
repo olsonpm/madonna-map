@@ -18,8 +18,8 @@
   "homepage": "https://github.com/olsonpm/madonna-map#readme",
   "dependencies": {
     "lodash": "^4.12.0",
-    "madonna-fp": "github:olsonpm/madonna-fp#f106683038912c5626b849f853b3afdbd245505f",
-    "madonna-internal-fn": "github:olsonpm/madonna-internal-fn#c0f9f97dbecbfafe42f64899d27e68c17aa8717d"
+    "madonna-fp": "github:olsonpm/madonna-fp#4bc3a9e4eef3960b7f1443b9224a34c16492e521",
+    "madonna-internal-fn": "github:olsonpm/madonna-internal-fn#4331d671b90497be5449b0bcd254a016bc674679"
   },
   "devDependencies": {
     "babel-core": "^6.10.4",
