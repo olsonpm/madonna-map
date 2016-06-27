@@ -2,7 +2,7 @@
   "name": "madonna-map",
   "version": "0.1.0",
   "description": "Creates a function which validates its arguments and passes the mapped results.",
-  "main": "lib/index.js",
+  "main": "es5.js",
   "scripts": {
     "test": "mocha tests"
   },
